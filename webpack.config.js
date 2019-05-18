@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Agilitools Development',
+      title: 'Splttr Development',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

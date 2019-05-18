@@ -3,12 +3,12 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import { createStore } from 'redux';
 import { StoreContext } from 'redux-react-hook';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
-
-import 'bootswatch/dist/sandstone/bootstrap.css';
+import 'bootswatch/dist/minty/bootstrap.css';
 
 import rootReducer from './store';
-import { devToolsEnhancer } from 'redux-devtools-extension';
+import Layout from './views/Layout';
 
 const store = createStore(
   rootReducer,
@@ -18,9 +18,9 @@ const store = createStore(
 const AppRouter: React.FC = () => (
   <StoreContext.Provider value={store}>
     <BrowserRouter>
-      <Container fluid>
-        <div>navbar</div>
-      </Container>
+      <Layout>
+        <div>hello world</div>
+      </Layout>
     </BrowserRouter>
   </StoreContext.Provider>
 );
