@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "paths": {
+      "hooks/*": [
+        "src/hooks/*"
+      ],
+      "store/*": [
+        "src/store/*"
+      ]
+    },
+    "target": "es5",
+    "jsx": "react"
+  },
+  "include": [
+    "./src/**/*"
+  ]
+}
