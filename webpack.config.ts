@@ -1,13 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+import * as path from 'path';
+import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import { TsConfigPathsPlugin } from 'awesome-typescript-loader';
+import * as webpack from 'webpack';
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-const webpack = require('webpack');
+type Mode = 'production' | 'development';
 
-module.exports = {
-  entry: './src/index.ts',
+const settings = (mode: Mode = 'production'): webpack.Configuration => ({
+  mode,
+
+  entry: './client/index.ts',
+
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
@@ -15,11 +18,6 @@ module.exports = {
   },
 
   devtool: 'inline-source-map',
-
-  devServer: {
-    contentBase: './dist',
-    historyApiFallback: true,
-  },
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
@@ -49,4 +47,6 @@ module.exports = {
     ],
   },
 
-};
+});
+
+export default settings;

@@ -6,8 +6,8 @@ const Layout: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
 
   return (
     <React.Fragment>
-      <Container>
-        <Navbar color="dark" dark>
+      <Container fluid>
+        <Navbar color="light" light>
           <NavbarBrand>Splttr</NavbarBrand>
         </Navbar>
       </Container>

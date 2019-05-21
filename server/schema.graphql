@@ -1,0 +1,51 @@
+type Query {
+    user(email: String!): User
+}
+
+type Mutation {
+    createUser(name: String!, email: String!): User!
+}
+
+type User {
+    id: ID!
+    email: String!
+    name: String!
+}
+
+type Person {
+    id: ID!
+    name: String!
+}
+
+type Discount {
+    id: ID!
+    name: String
+    amount: Float!
+    type: String
+}
+
+type Item {
+    id: ID!
+    name: String
+    buyers: [Person!]!
+    cost: Float
+    taxRate: TaxRate
+    discounts: [Discount!]!
+}
+
+type TaxRate {
+    id: ID!
+    name: String
+    amount: Float!
+}
+
+type Receipt {
+    id: ID!
+    user: User!
+    date: Int
+    store: String
+    participants: [Person!]!
+    discounts: [Discount!]!
+    taxRates: [TaxRate!]!
+    items: [Item!]!
+}

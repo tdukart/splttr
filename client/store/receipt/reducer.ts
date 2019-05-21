@@ -1,12 +1,12 @@
-import { RECEIPT_CREATE_SUCCESS, ReceiptActionTypes, ReceiptState } from 'store/receipt/types';
 import produce from 'immer';
+import { RECEIPT_CREATE_SUCCESS, ReceiptActionTypes, ReceiptState } from './types';
 
 const initialState: ReceiptState = {
   receipts: [],
 };
 
 const receiptReducer = (state = initialState, action: ReceiptActionTypes): ReceiptState => (
-  produce(state, draft => {
+  produce<ReceiptState>(state, draft => {
     if (action.type === RECEIPT_CREATE_SUCCESS) {
       draft.receipts.push(action.payload);
     }

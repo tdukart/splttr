@@ -32,6 +32,8 @@ export interface Item {
 
 export interface Receipt {
   id: string;
+  date?: Date;
+  store?: string;
   participants: Person[];
   discounts: Discount[];
   taxRates: TaxRate[];

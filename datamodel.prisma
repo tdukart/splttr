@@ -1,0 +1,43 @@
+type User {
+    id: ID! @unique
+    email: String! @unique
+    name: String!
+}
+
+type Person {
+    id: ID! @unique
+    name: String!
+}
+
+type Discount {
+    id: ID! @unique
+    name: String
+    amount: Float!
+    type: String
+}
+
+type Item {
+    id: ID! @unique
+    name: String
+    buyers: [Person!]!
+    cost: Float
+    taxRate: TaxRate
+    discounts: [Discount!]!
+}
+
+type TaxRate {
+    id: ID! @unique
+    name: String
+    amount: Float!
+}
+
+type Receipt {
+    id: ID! @unique
+    user: User!
+    date: Int
+    store: String
+    participants: [Person!]!
+    discounts: [Discount!]!
+    taxRates: [TaxRate!]!
+    items: [Item!]!
+}
