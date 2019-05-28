@@ -10,6 +10,9 @@ type User {
     id: ID!
     email: String!
     name: String!
+    password: String!
+    resetToken: String
+    resetTokenExpiry: Float
 }
 
 type Person {

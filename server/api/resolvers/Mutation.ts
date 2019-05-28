@@ -1,3 +1,4 @@
+import bcrypt from 'bcryptjs';
 import { MutationResolvers } from '../../generated/resolvers';
 // eslint-disable-next-line import/no-cycle
 import { TypeMap } from './types/TypeMap';
@@ -7,10 +8,16 @@ export interface MutationParent {
 }
 
 const Mutation: MutationResolvers.Type<TypeMap> = {
-  createUser: (parent, args, ctx) => ctx.db.createUser({
-    name: args.name,
-    email: args.email,
-  }),
+  createUser: async (parent, args, ctx) => {
+    const email = args.email.toLowerCase();
+    const password = await bcrypt.hash(args.password, 10);
+
+    return ctx.db.createUser({
+      name: args.name,
+      email,
+      password,
+    });
+  },
 };
 
 export default Mutation;

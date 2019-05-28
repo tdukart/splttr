@@ -28,6 +28,7 @@
     "apollo-client": "^2.5.1",
     "apollo-link-http": "^1.5.14",
     "awesome-typescript-loader": "^5.2.1",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^4.3.1",
     "bootswatch": "^4.3.1",
     "clean-webpack-plugin": "^2.0.2",
