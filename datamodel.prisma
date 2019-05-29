@@ -2,6 +2,9 @@ type User {
     id: ID! @unique
     email: String! @unique
     name: String!
+    password: String!
+    resetToken: String
+    resetTokenExpiry: Float
 }
 
 type Person {

@@ -7,8 +7,8 @@ export interface UserParent {
   name: string;
   email: string;
   password: string;
-  resetToken: string;
-  resetTokenExpiry: number;
+  resetToken?: string;
+  resetTokenExpiry?: number;
 }
 
 const User: UserResolvers.Type<TypeMap> = {
