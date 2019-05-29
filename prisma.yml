@@ -1,9 +1,10 @@
 endpoint: http://localhost:4466
 datamodel: datamodel.prisma
+secret: ${env:PRISMA_SECRET}
 
 hooks:
   post-deploy:
-    - prisma generate
+    - npm run generate-resolvers
 
 generate:
   - generator: typescript-client

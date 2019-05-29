@@ -6,13 +6,17 @@ import 'bootswatch/dist/minty/bootstrap.css';
 
 import Layout from './components/Layout';
 import client from './apollo';
+import SignedOutLobby from './components/SignedOutLobby';
+import UserLogin from './components/UserLogin';
 import UserCreate from './components/UserCreate';
 
 const AppRouter: React.FC = () => (
   <ApolloProvider client={client}>
     <BrowserRouter>
       <Layout>
-        <UserCreate />
+        <Route path="/" exact component={SignedOutLobby} />
+        <Route path="/login" component={UserLogin} />
+        <Route path="/newaccount" component={UserCreate} />
       </Layout>
     </BrowserRouter>
   </ApolloProvider>

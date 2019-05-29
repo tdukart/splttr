@@ -1,7 +1,7 @@
 import * as React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { Form, FormGroup, FormText, InputGroup, Input, Label, Button } from 'reactstrap';
+import { Form, InputGroup, Input, Label, Button } from 'reactstrap';
 
 const CREATE_USER = gql`
   mutation CreateUser($name: String!, $email: String!, $password: String!, $confirmPassword: String!) {
