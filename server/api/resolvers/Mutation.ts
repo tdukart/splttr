@@ -44,19 +44,20 @@ const Mutation: MutationResolvers.Type<TypeMap> = {
     // 2. Set a reset token and expiry on that user
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString('hex');
-    const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
+    const resetTokenExpiry = Date.now() + (60 * 60 * 1000); // 1 hour from now
     const res = await ctx.db.updateUser({
       where: { email },
       data: { resetToken, resetTokenExpiry },
     });
     const mailRes = await transport.sendMail({
-      from: 'wes@wesbos.com',
+      from: 'splttr@mechninja.com',
       to: user.email,
-      subject: 'Your Password Reset Token',
+      subject: 'Your Splttr Password Reset Token',
       html: makeANiceEmail(
-        `Your Password Reset Token is here!
+        `Your Splttr password reset token is here!
         \n\n
-        <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click Here to Reset</a>`,
+        <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset
+        your password.</a>`,
       ),
     });
     return true;
