@@ -36,16 +36,17 @@ const Mutation: MutationResolvers.Type<TypeMap> = {
   },
   requestReset: async (parent, args, ctx) => {
     // 1. Check if this is a real user
-    const user = await ctx.db.user({ email: args.email });
+    const email = args.email.toLowerCase();
+    const user = await ctx.db.user({ email });
     if (!user) {
-      throw new Error(`No such user found for email ${args.email}`);
+      throw new Error(`No such user found for email ${email}`);
     }
     // 2. Set a reset token and expiry on that user
     const randomBytesPromiseified = promisify(randomBytes);
     const resetToken = (await randomBytesPromiseified(20)).toString('hex');
     const resetTokenExpiry = Date.now() + 3600000; // 1 hour from now
     const res = await ctx.db.updateUser({
-      where: { email: args.email },
+      where: { email },
       data: { resetToken, resetTokenExpiry },
     });
     const mailRes = await transport.sendMail({
