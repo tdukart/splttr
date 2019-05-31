@@ -2,6 +2,7 @@ import * as React from 'react';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Form, InputGroup, Input, Label, Button, FormFeedback } from 'reactstrap';
+import { CURRENT_USER_QUERY } from '../User';
 
 const LOG_IN = gql`
   mutation LogIn($email: String!, $password: String!) {
@@ -23,7 +24,10 @@ const UserLogin = () => {
   const [password, setPassword] = React.useState('');
 
   return (
-    <Mutation<LogInData> mutation={LOG_IN}>
+    <Mutation<LogInData>
+      mutation={LOG_IN}
+      refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+    >
       {(logIn, { error, loading }) => (
         <Form
           onSubmit={async e => {

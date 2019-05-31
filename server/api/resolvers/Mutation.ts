@@ -1,4 +1,3 @@
-// @ts-ignore
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { promisify } from 'util';

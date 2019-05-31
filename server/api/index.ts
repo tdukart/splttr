@@ -1,14 +1,12 @@
 import { GraphQLServer } from 'graphql-yoga';
-// @ts-ignore
 import * as cookieParser from 'cookie-parser';
 import * as jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-// @ts-ignore
 import * as dotenv from 'dotenv';
+import { pick } from 'lodash';
 import resolvers from './resolvers';
 import { prisma } from '../generated/prisma-client';
 import { UserParent } from './resolvers/User';
-import { pick } from 'lodash';
 
 dotenv.config({ path: 'variables.env' });
 
