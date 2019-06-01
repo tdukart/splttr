@@ -9,6 +9,8 @@ const mode = (process.env.NODE_ENV === 'developement') ? 'development' : 'produc
 
 app.use(webpackMiddleware(webpack([webpackConfig(mode)])));
 
+process.env.FRONTEND_URL = 'http://localhost:8000';
+
 app.listen(8000, () => {
   // eslint-disable-next-line no-console
   console.log('Client started on port 8000');

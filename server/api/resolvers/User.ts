@@ -6,18 +6,16 @@ export interface UserParent {
   id: string;
   name: string;
   email: string;
-  password: string;
-  resetToken?: string;
-  resetTokenExpiry?: number;
+  loginToken?: string;
+  loginTokenExpiry?: number;
 }
 
 const User: UserResolvers.Type<TypeMap> = {
   id: parent => parent.id,
   name: parent => parent.name,
   email: parent => parent.email,
-  password: parent => parent.password,
-  resetToken: parent => parent.resetToken,
-  resetTokenExpiry: parent => parent.resetTokenExpiry,
+  loginToken: parent => parent.loginToken,
+  loginTokenExpiry: parent => parent.loginTokenExpiry,
 };
 
 export default User;

@@ -8,6 +8,7 @@ export interface QueryParent {
 
 const Query: QueryResolvers.Type<TypeMap> = {
   user: (parent, args, ctx) => ctx.db.user({ email: args.email }),
+  userByToken: (parent, args, ctx) => ctx.db.user({ loginToken: args.loginToken }),
   me: (parent, args, ctx) => {
     if (!ctx.request.userId) {
       return null;

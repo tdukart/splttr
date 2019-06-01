@@ -1,23 +1,22 @@
 type Query {
     user(email: String!): User
+    userByToken(loginToken: String!): User
     me: User
 }
 
 type Mutation {
-    createUser(name: String!, email: String!, password: String!, confirmPassword: String!): User!
-    login(email: String!, password: String!): User
+    createUser(name: String!, email: String!): User!
+    loginWithToken(loginToken: String!): User
     logout: Boolean!
-    requestReset(email: String!): Boolean!
-    resetPassword(password: String!, confirmPassword: String!, resetToken: String!): User!
+    getMagicLink(email: String!): Boolean!
 }
 
 type User {
     id: ID!
     email: String!
     name: String!
-    password: String!
-    resetToken: String
-    resetTokenExpiry: Float
+    loginToken: String
+    loginTokenExpiry: Float
 }
 
 type Person {

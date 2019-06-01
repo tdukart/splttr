@@ -7,8 +7,8 @@ const SignedOutLobby = () => (
     <CardHeader>Welcome!</CardHeader>
     <CardBody>
       <p>Please choose an option:</p>
-      <Link to="/login"><Button>Log in to existing account</Button></Link>
-      <Link to="/newaccount"><Button>Create new account</Button></Link>
+      <Link to="/account/login"><Button>Log in to existing account</Button></Link>
+      <Link to="/account/create"><Button>Create new account</Button></Link>
     </CardBody>
   </Card>
 );

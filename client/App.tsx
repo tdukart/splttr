@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 
 import 'bootswatch/dist/minty/bootstrap.css';
@@ -9,16 +9,19 @@ import client from './apollo';
 import SignedOutLobby from './components/SignedOutLobby';
 import UserLogin from './components/UserLogin';
 import UserCreate from './components/UserCreate';
-import UserForgotPassword from './components/UserForgotPassword';
 
 const AppRouter: React.FC = () => (
   <ApolloProvider client={client}>
     <HashRouter>
       <Layout>
         <Route path="/" exact component={SignedOutLobby} />
-        <Route path="/login" component={UserLogin} />
-        <Route path="/newaccount" component={UserCreate} />
-        <Route path="/forgotpassword" component={UserForgotPassword} />
+        <Route path="/account">
+          <Switch>
+            <Route path="/account/login" exact component={UserLogin} />
+            <Route path="/account/login/token/:loginToken" component={UserLogin} />
+            <Route path="/account/create" component={UserCreate} />
+          </Switch>
+        </Route>
       </Layout>
     </HashRouter>
   </ApolloProvider>

@@ -21,7 +21,7 @@ const Layout: React.FC = ({ children }: React.PropsWithChildren<{}>) => {
                 );
               }
               return (
-                <NavLink className="navbar-nav" to="/login">
+                <NavLink className="navbar-nav" to="/account/login">
                   Sign In
                 </NavLink>
               );
