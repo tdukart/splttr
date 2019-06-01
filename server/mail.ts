@@ -38,17 +38,5 @@ const generateTransport = once(async () => {
   return nodemailer.createTransport(transportOptions);
 });
 
-
-const makeANiceEmail = (text: string) => `
-  <div className="email" style="
-    border: 1px solid black;
-    padding: 20px;
-    font-family: sans-serif;
-    line-height: 2;
-    font-size: 20px;
-  ">
-    <p>${text}</p>
-  </div>
-`;
-
-export { generateTransport, makeANiceEmail };
+// eslint-disable-next-line import/prefer-default-export
+export { generateTransport };

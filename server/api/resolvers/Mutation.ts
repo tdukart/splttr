@@ -5,7 +5,7 @@ import * as ejs from 'ejs';
 import { promisify } from 'util';
 import { randomBytes } from 'crypto';
 import { resolve } from 'path';
-import { generateTransport, makeANiceEmail } from '../../mail';
+import { generateTransport } from '../../mail';
 import { MutationResolvers } from '../../generated/resolvers';
 // eslint-disable-next-line import/no-cycle
 import { TypeMap } from './types/TypeMap';
@@ -24,14 +24,13 @@ const Mutation: MutationResolvers.Type<TypeMap> = {
     const randomBytesPromiseified = promisify(randomBytes);
     const loginToken = (await randomBytesPromiseified(20)).toString('hex');
     const loginTokenExpiry = Date.now() + (60 * 60 * 1000); // 1 hour from now
-    const userUpdate = await ctx.db.updateUser({
+    await ctx.db.updateUser({
       where: { email },
       data: { loginToken, loginTokenExpiry },
     });
     const frontendUrl = `${ctx.request.protocol}://${ctx.request.get('host')}`;
 
-    // TODO: Only add `#` when using HashRouter.
-    const link = `${frontendUrl}/#/account/login/token/${loginToken}`;
+    const link = `${frontendUrl}/account/login/token/${loginToken}`;
     const emailBody = await ejs.renderFile<string>(
       resolve(__dirname, '../../emailTemplates/magicLink.ejs'),
       { user, link },
