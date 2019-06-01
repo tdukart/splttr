@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 import { Form, InputGroup, Input, Label, Button, FormFeedback } from 'reactstrap';
 import { CURRENT_USER_QUERY } from '../User';
+import { Link } from 'react-router-dom';
 
 const LOG_IN = gql`
   mutation LogIn($email: String!, $password: String!) {
@@ -52,6 +53,11 @@ const UserLogin = () => {
             </Label>
           </InputGroup>
           <Button color="primary" type="submit">Log In</Button>
+          <Link to="/forgotpassword">
+            <Button color="secondary">
+              Forgot Password
+            </Button>
+          </Link>
         </Form>
       )}
     </Mutation>

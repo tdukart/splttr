@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node server/index.ts",
-    "start:watch": "nodemon",
+    "start:watch": "NODE_ENV=development nodemon",
     "scaffold-resolvers": "graphql-resolver-codegen scaffold -s server/schema.graphql",
     "generate-resolvers": "graphql-resolver-codegen interfaces -s server/schema.graphql -o server/generated/resolvers.ts"
   },

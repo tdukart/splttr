@@ -1,8 +1,9 @@
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
+import * as nodemailer from 'nodemailer';
 import { promisify } from 'util';
 import { randomBytes } from 'crypto';
-import { transport, makeANiceEmail } from '../../mail';
+import { generateTransport, makeANiceEmail } from '../../mail';
 import { MutationResolvers } from '../../generated/resolvers';
 // eslint-disable-next-line import/no-cycle
 import { TypeMap } from './types/TypeMap';
@@ -10,6 +11,7 @@ import { TypeMap } from './types/TypeMap';
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface MutationParent {
 }
+
 
 const Mutation: MutationResolvers.Type<TypeMap> = {
   login: async (parent, args, ctx) => {
@@ -48,6 +50,7 @@ const Mutation: MutationResolvers.Type<TypeMap> = {
       where: { email },
       data: { resetToken, resetTokenExpiry },
     });
+    const transport = await generateTransport();
     const mailRes = await transport.sendMail({
       from: 'splttr@mechninja.com',
       to: user.email,
@@ -59,6 +62,9 @@ const Mutation: MutationResolvers.Type<TypeMap> = {
         your password.</a>`,
       ),
     });
+
+    // eslint-disable-next-line no-console
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(mailRes));
     return true;
   },
   resetPassword: async (parent, args, ctx, info) => {

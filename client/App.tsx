@@ -9,6 +9,7 @@ import client from './apollo';
 import SignedOutLobby from './components/SignedOutLobby';
 import UserLogin from './components/UserLogin';
 import UserCreate from './components/UserCreate';
+import UserForgotPassword from './components/UserForgotPassword';
 
 const AppRouter: React.FC = () => (
   <ApolloProvider client={client}>
@@ -17,6 +18,7 @@ const AppRouter: React.FC = () => (
         <Route path="/" exact component={SignedOutLobby} />
         <Route path="/login" component={UserLogin} />
         <Route path="/newaccount" component={UserCreate} />
+        <Route path="/forgotpassword" component={UserForgotPassword} />
       </Layout>
     </HashRouter>
   </ApolloProvider>
